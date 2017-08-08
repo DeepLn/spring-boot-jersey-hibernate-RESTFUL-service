@@ -90,4 +90,11 @@ public class UserEndpoint {
     return Response.ok(ResponseJson.loginOk(dto)).build();
   }
 
+  @GET
+  @Path("/sample")
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response userSample() {
+    return Response.ok("ok, you'are requesting a RESTFUL service").build();
+  }
+
 }
