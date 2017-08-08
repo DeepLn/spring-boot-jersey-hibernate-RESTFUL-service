@@ -10,18 +10,18 @@ pure RESTFUL service with spring-boot and jersey and hibernate,comfortable with 
 4) curl installed (for test)
 ```
 
-2. package
+2. mysql config 
+```
+1) config your mysql database_name&&user&&password in the file /tmp/spring-boot-jersey-hibernate-RESTFUL-servic/src/main/resources/application.properties
+2) create database with command "create database database_name"
+```
+
+3. package
 ```
 1) cd /tmp
 2) git clone https://github.com/DeepLn/spring-boot-jersey-hibernate-RESTFUL-service.git
 3) cd spring-boot-jersey-hibernate-RESTFUL-service/
 4) mvn package
-```
-
-3. mysql config 
-```
-1) config your mysql database_name&&user&&password in the file /tmp/spring-boot-jersey-hibernate-RESTFUL-servic/src/main/resources/application.properties
-2) create database with command "create database database_name"
 ```
 
 4. run
