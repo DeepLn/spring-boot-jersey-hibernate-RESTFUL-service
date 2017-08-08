@@ -94,18 +94,20 @@
             </plugin>
         </plugins>
     </build>
-    <!-- 配置本地仓库 -->
+    <!-- config your local repository -->
+    <!--
     <distributionManagement>
         <repository>
-            <id>dou-release</id>
+            <id>release</id>
             <name>Dou IoT Platform Release Repository</name>
-            <url>http://172.16.0.23:8081/nexus/content/repositories/dou-iot-platform-release/</url>
+            <url>http://localhost:8081/nexus/content/repositories/platform-release/</url>
         </repository>
         <snapshotRepository>
-            <id>dou-snapshot</id>
-            <name>Dou IoT Platform Snapshot Repository</name>
-            <url>http://172.16.0.23:8081/nexus/content/repositories/dou-iot-platform-snapshot/</url>
+            <id>snapshot</id>
+            <name>Platform Snapshot Repository</name>
+            <url>http://localhost:8081/nexus/content/repositories/platform-snapshot/</url>
         </snapshotRepository>
     </distributionManagement>
-    <!-- 本地仓库配置完毕 -->
+    -->
+    <!-- end -->
 </project>
