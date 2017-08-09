@@ -1,11 +1,12 @@
 package com.xdao.dto;
 
 import java.io.Serializable;
+import java.security.Principal;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class UserDto implements HasId, Serializable {
+public class UserDto implements HasId, Principal, Serializable {
 
   private static final long serialVersionUID = 2052580632293959408L;
 
@@ -18,6 +19,8 @@ public class UserDto implements HasId, Serializable {
   @Size(min = 32)
   @NotNull(message = "invalid password hash")
   private String password;
+
+  private String verifyCode;
 
   private String apiKey;
 
@@ -49,6 +52,14 @@ public class UserDto implements HasId, Serializable {
     this.password = password;
   }
 
+  public String getVerifyCode() {
+    return verifyCode;
+  }
+
+  public void setVerifyCode(String verifyCode) {
+    this.verifyCode = verifyCode;
+  }
+
   public String getApiKey() {
     return apiKey;
   }
@@ -71,6 +82,11 @@ public class UserDto implements HasId, Serializable {
 
   public void setCreatedTime(long createdTime) {
     this.createdTime = createdTime;
+  }
+
+  @Override 
+  public String getName() { 
+    return mobile; 
   }
 
   @Override

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.xdao.endpoint.ClientEndpoint;
+import com.xdao.endpoint.SmsEndpoint;
 import com.xdao.endpoint.UserEndpoint;
 import com.xdao.filter.AuthGeneralRequestFilter;
 import com.xdao.filter.AuthManagerRequestFilter;
@@ -28,6 +29,7 @@ public class JerseyConfig extends ResourceConfig {
     register(AuthGeneralRequestFilter.class);
     register(AuthManagerRequestFilter.class);
     register(ClientEndpoint.class);
+    register(SmsEndpoint.class);
     register(UserEndpoint.class);
   }
 

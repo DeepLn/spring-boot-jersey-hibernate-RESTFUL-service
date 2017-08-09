@@ -31,8 +31,8 @@ public class UserService implements IUserService {
   private UserDao<User> userDao;
 
   @Override
-  public boolean auth(final String apiKey, final String apiSecret) {
-    return findByApiKeySecret(apiKey, apiSecret) != null;
+  public UserDto auth(final String apiKey, final String apiSecret) {
+    return findByApiKeySecret(apiKey, apiSecret);
   }
 
   @Override

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IUserService {
 
-  boolean auth(final String apiKey, final String apiSecret);
+  UserDto auth(final String apiKey, final String apiSecret);
 
   UserDto findByMobile(final String mobile);
 

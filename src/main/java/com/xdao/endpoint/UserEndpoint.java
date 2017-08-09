@@ -49,6 +49,11 @@ public class UserEndpoint {
     if (userService.findByMobile(mobile) == null) {
       userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
+      String verifyCode = userDto.getVerifyCode();
+      if (verifyCode == null || !userDto.getVerifyCode().equals("123456")) {
+        return Response.ok(ResponseJson.warning("invalid verify code!").toString()).build();
+      }
+
       String apiKey;
       String apiSecret;
 
@@ -67,7 +72,7 @@ public class UserEndpoint {
       userDto = userService.saveUser(userDto);
       return Response.ok(ResponseJson.registerOk(userDto)).build();
     } else {
-      return Response.ok("regested!").build();
+      return Response.ok(ResponseJson.warning("regested!").toString()).build();
     }
   }  
 
@@ -89,6 +94,29 @@ public class UserEndpoint {
     
     return Response.ok(ResponseJson.loginOk(dto)).build();
   }
+
+  @POST
+  @Path("/passwordReset")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response userPasswordReset(UserDto userDto) {
+    final String mobile = userDto.getMobile();
+
+    String verifyCode = userDto.getVerifyCode();
+    if (verifyCode == null || !userDto.getVerifyCode().equals("123456")) {
+      return Response.ok(ResponseJson.warning("invalid verify code!").toString()).build();
+    }
+
+    UserDto user = userService.findByMobile(mobile);
+    if (user != null) {
+      user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+      userDto = userService.saveUser(user);
+      return Response.ok(ResponseJson.registerOk(userDto)).build();
+    } else {
+      return Response.ok(ResponseJson.warning("user not exist!").toString()).build();
+    }
+  }  
+
 
   @GET
   @Path("/sample")

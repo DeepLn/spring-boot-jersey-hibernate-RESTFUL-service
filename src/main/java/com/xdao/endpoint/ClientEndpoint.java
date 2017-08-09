@@ -6,9 +6,12 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.SecurityContext;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -17,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.xdao.dto.ClientDto;
+import com.xdao.dto.UserDto;
 import com.xdao.filter.auth.AuthGeneral;
 import com.xdao.filter.auth.AuthManager;
 import com.xdao.service.IClientService;
@@ -50,7 +54,9 @@ public class ClientEndpoint {
   @Path("/property")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response clientProperty(ClientDto clientDto) {
+  public Response clientProperty(@Context SecurityContext sc, ClientDto clientDto) {
+    /*System.out.println("mobile:" + ((UserDto)sc.getUserPrincipal()).getMobile());*/
+
     ClientDto dto = clientService.findByClientId(clientDto.getClientId());
     if (dto != null) {
       JSONObject obj = ResponseJson.ok().put("topic", dto.getTopic());
